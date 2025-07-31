@@ -16,8 +16,7 @@ terraform {
 
 # Not recommended — security risk
 provider "aws" {
-  access_key = "AKIAZK4TUP7QXW6KBMOB"
-  secret_key = "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"
+
   region     = "ap-south-1"
 }
 
