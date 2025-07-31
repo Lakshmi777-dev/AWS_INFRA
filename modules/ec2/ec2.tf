@@ -2,7 +2,7 @@ resource "aws_instance" "ec2_instance" {
   for_each      = { for idx, instance in var.instances : idx => instance }
   ami           = each.value.ami_id
   instance_type = each.value.instance_type
-  key_name      = var.key_name
+  key_name      = var.key_names[each.key]
 
   subnet_id = (
     each.value.subnet_type == "public" ?

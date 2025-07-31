@@ -7,13 +7,17 @@ terraform {
     }
   }
   backend "s3" {
-    bucket         = "rabiesevin-prod-terraformstate"
-    key            = "rabiesevin-state/terraform.tfstate"
+    bucket         = "testsarthi"
+    key            = "sarthi-state/terraform.tfstate"
     region         = "ap-south-1"
     encrypt        = true
   }
 }
 
+# Not recommended — security risk
 provider "aws" {
-  region     = var.aws_region
+  access_key = "AKIAZK4TUP7QXW6KBMOB"
+  secret_key = "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"
+  region     = "ap-south-1"
 }
+

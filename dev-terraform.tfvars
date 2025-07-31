@@ -6,14 +6,14 @@ aws_region     = "ap-south-1"
 
 # VPC configurations
 vpcs = {
-  "prod" = {
-    vpc_name           = "Rabiesevin-prod-vpc"
+  "DEV" = {
+    vpc_name           = "zarthi-dev-vpc"
     vpc_cidr_block     = "10.100.0.0/16"
     public_subnets     = ["10.100.0.0/20"]
     private_subnets    = ["10.100.32.0/20"]
     create_nat_gateway = true
     enable_flow_logs = true
-    flow_log_bucket = "rabiesevin-prod-vpc-flow-logs"
+    flow_log_bucket = "zarthi-dev-vpc-flow-logs"
   }
 }
 
@@ -21,11 +21,11 @@ availability_zones = ["ap-south-1a", "ap-south-1b"]
 
 # VPC Flow logs bucket
 flow_log_bucket = [
-  "rabiesevin-prod-vpc-flow-logs"
+  "zarthi-dev-vpc-flow-logs"
 ]
 
 # keypair
-key_name = "rwin-prod"
+#key_name = "rwin-prod"
 
 # EC2 servers list
 instances = [
@@ -41,6 +41,7 @@ instances = [
     security_group_name = "rwinprod-apigw-sg"
     associate_eip       = true
     os_type             = "linux"
+    key_name            = "api-gateway-key" 
     #secondary_ebs_volume_type  = "gp3"
     #secondary_ebs_volume_size  = "1"
   },

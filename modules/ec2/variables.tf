@@ -23,6 +23,7 @@ variable "instances" {
     ebs_volume_type           = string
     ebs_volume_size           = number
     security_group_name       = string
+    key_name              = string
     secondary_ebs_volume_type = optional(string)
     secondary_ebs_volume_size = optional(number)
     os_type                   = string

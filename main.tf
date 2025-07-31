@@ -17,7 +17,8 @@ module "ec2" {
   source    = "./modules/ec2"
   instances = var.instances
   vpcs      = var.vpcs
-  key_name  = module.key_pair.key_name
+  # Map of key names per instance
+  key_names = { for name, kp in module.key_pair : name => kp.key_name }
 
   # Pass subnet IDs grouped by VPC keys
   public_subnet_ids  = { for vpc_key, vpc in module.vpc : vpc_key => vpc.public_subnet_ids }
@@ -27,9 +28,20 @@ module "ec2" {
   security_groups = module.security_groups.security_group_ids
 }
 
+/*
 module "key_pair" {
   source   = "./modules/key_pair"
   key_name = var.key_name
+}
+*/
+
+module "key_pair" {
+  source   = "./modules/key_pair"
+
+  for_each = { for instance in var.instances : instance.name => instance }
+
+  key_name = "${each.value.name}-key"
+  filename = "${each.value.key_name}.pem"
 }
 
 module "security_groups" {
