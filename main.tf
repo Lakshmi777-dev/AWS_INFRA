@@ -28,20 +28,12 @@ module "ec2" {
   security_groups = module.security_groups.security_group_ids
 }
 
-/*
-module "key_pair" {
-  source   = "./modules/key_pair"
-  key_name = var.key_name
-}
-*/
-
 module "key_pair" {
   source   = "./modules/key_pair"
 
   for_each = { for instance in var.instances : instance.name => instance }
 
   key_name = "${each.value.name}-key"
-  filename = "${each.value.key_name}.pem"
 }
 
 module "security_groups" {

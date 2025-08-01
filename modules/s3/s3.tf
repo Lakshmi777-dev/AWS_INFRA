@@ -47,7 +47,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "encryption" {
 }
 
 resource "aws_s3_bucket_policy" "cloudtrail_bucket_policy" {
-  bucket = "rabies-prod-cloudtrail-logs"
+  bucket = "zarthi-dev-vpc-flow-logs"
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -59,7 +59,7 @@ resource "aws_s3_bucket_policy" "cloudtrail_bucket_policy" {
           Service = "cloudtrail.amazonaws.com"
         }
         Action   = "s3:GetBucketAcl"
-        Resource = "arn:aws:s3:::rabies-prod-cloudtrail-logs"
+        Resource = "arn:aws:s3:::zarthi-dev-vpc-flow-logs"
       },
       {
         Sid    = "AWSCloudTrailWrite20150319"
@@ -68,7 +68,7 @@ resource "aws_s3_bucket_policy" "cloudtrail_bucket_policy" {
           Service = "cloudtrail.amazonaws.com"
         }
         Action   = "s3:PutObject"
-        Resource = "arn:aws:s3:::rabies-prod-cloudtrail-logs/AWSLogs/${data.aws_caller_identity.current.account_id}/*"
+        Resource = "arn:aws:s3:::zarthi-dev-vpc-flow-logs/AWSLogs/${data.aws_caller_identity.current.account_id}/*"
         Condition = {
           StringEquals = {
             "s3:x-amz-acl" = "bucket-owner-full-control"
@@ -77,6 +77,9 @@ resource "aws_s3_bucket_policy" "cloudtrail_bucket_policy" {
       }
     ]
   })
+  depends_on = [
+    aws_s3_bucket.s3_bucket["zarthi-dev-vpc-flow-logs"]
+  ]
 }
 
 # resource "aws_s3_bucket_policy" "cloudtrail_bucket_policy1" {

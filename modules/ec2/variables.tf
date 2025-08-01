@@ -46,9 +46,11 @@ variable "security_groups" {
   type        = map(string)
 }
 
-variable "key_name" {
-  description = "Name of the SSH key pair"
+variable "key_names" {
+  description = "Map of SSH key pair names by instance key"
+  type        = map(string)
 }
+
 
 variable "kms_key_id" {
   type        = string
