@@ -7,7 +7,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket         = "testsarthi"
+    bucket         = "sarthi-dev-test"
     key            = "sarthi-state/terraform.tfstate"
     region         = "ap-south-1"
     encrypt        = true
@@ -18,5 +18,6 @@ terraform {
 provider "aws" {
 
   region     = "ap-south-1"
+  profile = "default"
 }
 
