@@ -34,28 +34,3 @@ resource "aws_security_group" "sg" {
   }
 }
 
-resource "aws_security_group" "alb" {
-  for_each    = var.vpc_ids
-  name        = "${each.key}-alb-sg"
-  description = "Allow traffic for ALB in ${each.key}"
-  vpc_id      = each.value
-  ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Name = "alb-sg"
-  }
-}
-
-

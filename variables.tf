@@ -100,7 +100,7 @@ variable "s3_buckets" {
   }))
 }
 
-variable "route53_zone_id" {
+/*variable "route53_zone_id" {
   description = "The Route53 hosted zone ID for the domain"
   type        = string
 }
@@ -108,4 +108,4 @@ variable "route53_zone_id" {
 variable "domain_name" {
   description = "Domain name for the ALB or Route53"
   type        = string
-}
+}*/

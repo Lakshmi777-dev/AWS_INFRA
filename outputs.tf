@@ -80,7 +80,5 @@ output "pritunl_sg_id" {
   description = "Security Group ID of the Pritunl EC2 instance"
   value       = module.security_groups.security_group_ids["zarthi-dev-pritunl-sg"]
 }
-output "pritunl_alb_dns" {
-  value = module.alb.alb_dns_name
-}
+
 

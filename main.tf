@@ -48,7 +48,7 @@ module "s3_buckets" {
 }
 
 
-module "alb" {
+/*module "alb" {
   source             = "./modules/alb"
   name               = "pritunl-alb"
   vpc_id             = module.vpc["DEV"].vpc_id
@@ -64,6 +64,6 @@ module "acm" {
   source         = "./modules/acm"
   domain_name    = var.domain_name
   hosted_zone_id = var.route53_zone_id
-}
+}*/
 
 

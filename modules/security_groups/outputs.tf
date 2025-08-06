@@ -4,8 +4,3 @@ output "security_group_ids" {
 }
 
 
-output "alb_sg_id" {
-  value = {
-    for vpc_key, sg in aws_security_group.alb : vpc_key => sg.id
-  }
-}
