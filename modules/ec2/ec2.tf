@@ -1,5 +1,6 @@
 resource "aws_instance" "ec2_instance" {
   for_each      = { for idx, instance in var.instances : idx => instance }
+
   ami           = each.value.ami_id
   instance_type = each.value.instance_type
   #key_name      = var.key_names[each.key]
@@ -10,6 +11,9 @@ resource "aws_instance" "ec2_instance" {
     element(var.public_subnet_ids[each.value.vpc_key], each.value.subnet_index) :
     element(var.private_subnet_ids[each.value.vpc_key], each.value.subnet_index)
   )
+  
+  #user_data = file("${path.module}/scripts/mongodb-user-data.sh")
+  user_data = each.value.user_data_path != null ? file("${path.module}/${each.value.user_data_path}") : null
 
   root_block_device {
     volume_type           = each.value.ebs_volume_type
@@ -30,12 +34,14 @@ resource "aws_instance" "ec2_instance" {
     }
   }
 
+  
   vpc_security_group_ids = [
     var.security_groups[each.value.security_group_name]
   ]
 
   tags = {
     Name = each.value.name
+  
   }
 }
 
@@ -50,3 +56,8 @@ resource "aws_eip" "elastic_ip" {
     Name = "${each.value.name}-EIP"
   }
 }
+
+
+
+
+  

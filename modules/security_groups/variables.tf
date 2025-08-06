@@ -3,6 +3,11 @@ variable "vpc_ids" {
   type        = map(string)
 }
 
+/*variable "domain_name" {
+  description = "The domain name for the ALB"
+  type        = string
+}*/
+
 variable "security_groups" {
   description = "List of security group configurations"
   type = list(object({
@@ -24,3 +29,4 @@ variable "security_groups" {
     }))
   }))
 }
+

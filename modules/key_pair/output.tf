@@ -19,3 +19,15 @@ output "private_key_file" {
   description = "The local file path where the private key is saved"
   value       = local_file.private_key.filename
 }
+
+output "private_key" {
+  value     = tls_private_key.rsa_4096.private_key_pem
+  sensitive = true
+}
+
+
+
+output "pritunl_private_key" {
+  value     = tls_private_key.pritunl_key.private_key_pem
+  sensitive = true
+}

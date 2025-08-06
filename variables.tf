@@ -44,11 +44,12 @@ variable "instances" {
     ebs_volume_type           = string
     ebs_volume_size           = number
     security_group_name       = string
-    key_name              = string 
+    key_name                  = string
     secondary_ebs_volume_type = optional(string)
     secondary_ebs_volume_size = optional(number)
     os_type                   = string
     associate_eip             = optional(bool)
+  
   }))
 }
 
@@ -97,4 +98,14 @@ variable "s3_buckets" {
     apply_policy = optional(bool)
     policy       = optional(string) # This line ensures a policy can be provided
   }))
+}
+
+variable "route53_zone_id" {
+  description = "The Route53 hosted zone ID for the domain"
+  type        = string
+}
+
+variable "domain_name" {
+  description = "Domain name for the ALB or Route53"
+  type        = string
 }

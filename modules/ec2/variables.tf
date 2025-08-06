@@ -28,6 +28,8 @@ variable "instances" {
     secondary_ebs_volume_size = optional(number)
     os_type                   = string
     associate_eip             = optional(bool)
+    user_data_path            = optional(string)
+    #security_group_ids          = list(string)
   }))
 }
 

@@ -17,3 +17,15 @@ output "elastic_ip_addresses" {
   value       = [for ip in aws_eip.elastic_ip : ip.public_ip if ip.public_ip != ""]
   description = "List of Elastic IP addresses associated with instances"
 }
+
+output "instance_public_ips" {
+  description = "Public IPs of EC2 instances (keyed by instance name)"
+  value = {
+    for key, instance in aws_instance.ec2_instance :
+    var.instances[key].name => instance.public_ip
+  }
+}
+output "pritunl_instance_id" {
+  value = values(aws_instance.ec2_instance)[0].id
+}
+

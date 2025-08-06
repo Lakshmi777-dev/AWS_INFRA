@@ -7,17 +7,17 @@ terraform {
     }
   }
   backend "s3" {
-    bucket         = "sarthi-dev-test"
-    key            = "sarthi-state/terraform.tfstate"
-    region         = "ap-south-1"
-    encrypt        = true
+    bucket  = "sarthi-dev-test"
+    key     = "sarthi-state/terraform.tfstate"
+    region  = "ap-south-1"
+    encrypt = true
   }
 }
 
 # Not recommended — security risk
 provider "aws" {
 
-  region     = "ap-south-1"
+  region  = "ap-south-1"
   profile = "default"
 }
 
