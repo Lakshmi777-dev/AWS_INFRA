@@ -48,22 +48,6 @@ module "s3_buckets" {
 }
 
 
-/*module "alb" {
-  source             = "./modules/alb"
-  name               = "pritunl-alb"
-  vpc_id             = module.vpc["DEV"].vpc_id
-  public_subnet_ids  = module.vpc["DEV"].public_subnet_ids
-  domain_name        = var.domain_name
-  route53_zone_id    = var.route53_zone_id
-  ec2_instance_ids   = [module.ec2.pritunl_instance_id]
-  ec2_instance_map   = {
-    pritunl = module.ec2.pritunl_instance_id
-  }
-}
-module "acm" {
-  source         = "./modules/acm"
-  domain_name    = var.domain_name
-  hosted_zone_id = var.route53_zone_id
-}*/
+
 
 
